@@ -2,7 +2,7 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import ArraysUtilities.SortArraysUtil;
+import arrays_utilities.SortArraysUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

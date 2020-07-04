@@ -1,4 +1,4 @@
-package NumbersUtilities;
+package numbers_utilities;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

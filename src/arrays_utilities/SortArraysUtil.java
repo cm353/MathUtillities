@@ -1,11 +1,11 @@
-package ArraysUtilities;
+package arrays_utilities;
 
 import java.util.Arrays;
 
 final public class SortArraysUtil {
 
 	private SortArraysUtil() {
-	};
+	}
 
 	public static int[] bubbleSort(final int[] input) {
 		int[] result = SortArraysUtil.deepCopyArray(input);

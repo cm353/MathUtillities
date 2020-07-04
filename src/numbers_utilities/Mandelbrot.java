@@ -1,4 +1,4 @@
-package NumbersUtilities;
+package numbers_utilities;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -76,7 +76,7 @@ public class Mandelbrot {
     public static void main(String[] args) throws IllegalArgumentException {
         if(args.length>1)
             throw new IllegalArgumentException("only one or zero arguments allowed");
-        if(Integer.parseInt(args[0])<2)
+        if(args.length==1 && Integer.parseInt(args[0])<2)
             throw new IllegalArgumentException("image size must be bigger than 1");
         int imageHeight;
         if(args.length==1) {

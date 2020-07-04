@@ -1,4 +1,4 @@
-package ArraysUtilities;
+package arrays_utilities;
 
 import java.util.HashSet;
 import java.util.Random;
