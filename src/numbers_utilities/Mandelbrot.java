@@ -1,8 +1,10 @@
 package numbers_utilities;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -48,7 +50,7 @@ public class Mandelbrot {
      *  @param shiftIm Im shift of the image center
      *  @param mag zoom factor
      */
-    public static void drawMandelbrot(int x, int y, double shiftRe, double shiftIm, double mag){
+    public static BufferedImage drawMandelbrot(int x, int y, double shiftRe, double shiftIm, double mag){
         int greyValue=0;
         BufferedImage img = new BufferedImage(2*x,2*y, BufferedImage.TYPE_BYTE_GRAY );
         for (int i=-x; i<x; i++){
@@ -67,6 +69,7 @@ public class Mandelbrot {
             e.printStackTrace();
         } finally {
             System.out.print("Program run finished");
+            return img;
         }
     }
 
@@ -78,7 +81,7 @@ public class Mandelbrot {
      *  @throws IllegalArgumentException inappropriate args are passed
      */
     public static void main(String[] args) throws IllegalArgumentException {
-        if(args.length!=3)
+        if(args.length!=4)
             throw new IllegalArgumentException("java Mandelbrot.class image_height Re_shift Im_shift zoom");
         int imageHeight = Integer.parseInt(args[0])/2;;
         double shiftRe = Double.parseDouble(args[1]);
@@ -88,7 +91,15 @@ public class Mandelbrot {
         System.out.println("Image will be of size:" + 4*imageHeight + "x"+2*imageHeight);
         System.out.printf("Center of image will be Re=%f Im= %f \n", shiftRe,shiftIm);
 
-        Mandelbrot.drawMandelbrot(2*imageHeight, imageHeight, shiftRe, shiftIm, mag);
+        BufferedImage image = Mandelbrot.drawMandelbrot(2*imageHeight, imageHeight, shiftRe, shiftIm, mag);
+
+        JLabel imageLabel = new JLabel(new ImageIcon(image));
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(imageLabel);
+        frame.pack();
+        frame.setVisible(true);;
+
     }
 
 }
