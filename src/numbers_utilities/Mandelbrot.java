@@ -50,13 +50,13 @@ public class Mandelbrot {
      *  @param mag zoom factor
      */
     public static BufferedImage drawMandelbrot(int x, int y, double shiftRe, double shiftIm, double mag){
-        int greyValue=0;
+        int greyValue;
         BufferedImage img = new BufferedImage(2*x,2*y, BufferedImage.TYPE_BYTE_GRAY );
         for (int i=-x; i<x; i++){
             for(int j=-y;j<y;j++){
                 // (-1)*... to take into account that (0, 0) is the upper left corner of BufferedImage
                 // and not lower left corner as expected in cartesian coordinates
-                greyValue = 255-Mandelbrot.mandel(i/((double)mag*x)*2+shiftRe,(-1)*j/((double)mag*y)+shiftIm);
+                greyValue = 255-Mandelbrot.mandel(i/(mag*x)*2+shiftRe,(-1)*j/(mag*y)+shiftIm);
                 img.setRGB(i+x,j+y, new Color(greyValue, greyValue, greyValue).getRGB());
             }
             System.out.println("finished: " + ((float)i+x)/(2*x)*100+"%");
@@ -68,8 +68,8 @@ public class Mandelbrot {
             e.printStackTrace();
         } finally {
             System.out.print("Program run finished");
-            return img;
         }
+        return img;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Mandelbrot {
     public static void main(String[] args) throws IllegalArgumentException {
         if(args.length!=4)
             throw new IllegalArgumentException("java Mandelbrot.class image_height Re_shift Im_shift zoom");
-        int imageHeight = Integer.parseInt(args[0])/2;;
+        int imageHeight = Integer.parseInt(args[0])/2;
         double shiftRe = Double.parseDouble(args[1]);
         double shiftIm= Double.parseDouble(args[2]);
         double mag = Double.parseDouble(args[3]);
@@ -97,7 +97,7 @@ public class Mandelbrot {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(imageLabel);
         frame.pack();
-        frame.setVisible(true);;
+        frame.setVisible(true);
 
     }
 
